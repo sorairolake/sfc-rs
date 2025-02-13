@@ -1,0 +1,44 @@
+# SPDX-FileCopyrightText: 2025 Shun Sakai
+#
+# SPDX-License-Identifier: Apache-2.0 OR MIT
+
+[package]
+name = "rand_sfc"
+version = "0.1.0"
+authors = ["Shun Sakai <sorairolake@protonmail.ch>"]
+edition = "2021"
+rust-version = "1.63.0"
+description = "Chris Doty-Humphrey's SFC PRNGs"
+documentation = "https://docs.rs/rand_sfc"
+readme = "README.md"
+repository = "https://github.com/sorairolake/sfc-rs"
+license = "Apache-2.0 OR MIT"
+keywords = ["random", "rng", "sfc"]
+categories = ["algorithms", "no-std"]
+include = ["/LICENSES", "/README.md", "/src"]
+
+[package.metadata.docs.rs]
+all-features = true
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+rand_core = "0.9.0"
+serde = { version = "1.0.217", default-features = false, features = ["derive"], optional = true }
+
+[dev-dependencies]
+anyhow = "1.0.95"
+clap = { version = "4.0.32", features = ["derive"] }
+
+[features]
+serde = ["dep:serde"]
+
+[lints.clippy]
+cargo = "warn"
+nursery = "warn"
+pedantic = "warn"
+
+[lints.rust]
+missing_debug_implementations = "deny"
+rust_2018_idioms = { level = "warn", priority = -1 }
+unsafe_code = "forbid"
