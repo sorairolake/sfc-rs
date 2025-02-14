@@ -27,6 +27,6 @@ fn next_u64(b: &mut Bencher) {
 #[bench]
 fn fill_bytes(b: &mut Bencher) {
     let mut rng = Sfc64::from_os_rng();
-    let mut dst = [u8::default(); 8];
+    let mut dst = [u8::default(); 128];
     b.iter(|| rng.fill_bytes(&mut dst));
 }
