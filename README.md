@@ -25,11 +25,10 @@ This crate supports version 4 of the SFC algorithms.
 
 ## Usage
 
-Add this to your `Cargo.toml`:
+Run the following command in your project directory:
 
-```toml
-[dependencies]
-rand_sfc = "0.1.0"
+```sh
+cargo add rand_sfc
 ```
 
 ### Crate features
