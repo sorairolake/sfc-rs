@@ -18,6 +18,10 @@
 // Lint levels of rustc.
 #![deny(missing_docs)]
 
+#[cfg(test)]
+#[macro_use]
+extern crate alloc;
+
 mod sfc32;
 mod sfc64;
 
