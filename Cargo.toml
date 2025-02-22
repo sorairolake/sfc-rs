@@ -6,8 +6,8 @@
 name = "rand_sfc"
 version = "0.1.0"
 authors = ["Shun Sakai <sorairolake@protonmail.ch>"]
-edition = "2021"
-rust-version = "1.63.0"
+edition = "2024"
+rust-version = "1.85.0"
 description = "Chris Doty-Humphrey's SFC PRNGs"
 documentation = "https://docs.rs/rand_sfc"
 readme = "README.md"
@@ -22,11 +22,11 @@ all-features = true
 
 [dependencies]
 rand_core = "0.9.1"
-serde = { version = "1.0.217", default-features = false, features = ["derive"], optional = true }
+serde = { version = "1.0.218", default-features = false, features = ["derive"], optional = true }
 
 [dev-dependencies]
 rand_core = { version = "0.9.1", features = ["os_rng"] }
-serde_json = "1.0.138"
+serde_json = "1.0.139"
 
 [features]
 serde = ["dep:serde"]

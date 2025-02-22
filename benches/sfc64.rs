@@ -7,8 +7,8 @@
 extern crate test;
 
 use rand_sfc::{
-    rand_core::{RngCore, SeedableRng},
     Sfc64,
+    rand_core::{RngCore, SeedableRng},
 };
 use test::Bencher;
 

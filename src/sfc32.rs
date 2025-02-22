@@ -4,7 +4,7 @@
 
 //! An implementation of the sfc32 random number generator.
 
-use rand_core::{impls, le, RngCore, SeedableRng};
+use rand_core::{RngCore, SeedableRng, impls, le};
 
 /// A sfc32 random number generator.
 ///
@@ -14,8 +14,8 @@ use rand_core::{impls, le, RngCore, SeedableRng};
 ///
 /// ```
 /// # use rand_sfc::{
-/// #     rand_core::{RngCore, SeedableRng},
 /// #     Sfc32,
+/// #     rand_core::{RngCore, SeedableRng},
 /// # };
 /// #
 /// let mut rng = Sfc32::from_seed([0; 12]);

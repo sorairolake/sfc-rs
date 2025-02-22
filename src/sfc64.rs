@@ -4,7 +4,7 @@
 
 //! An implementation of the sfc64 random number generator.
 
-use rand_core::{impls, le, RngCore, SeedableRng};
+use rand_core::{RngCore, SeedableRng, impls, le};
 
 /// A sfc64 random number generator.
 ///
@@ -14,8 +14,8 @@ use rand_core::{impls, le, RngCore, SeedableRng};
 ///
 /// ```
 /// # use rand_sfc::{
-/// #     rand_core::{RngCore, SeedableRng},
 /// #     Sfc64,
+/// #     rand_core::{RngCore, SeedableRng},
 /// # };
 /// #
 /// let mut rng = Sfc64::from_seed([0; 24]);
