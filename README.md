@@ -13,7 +13,7 @@ SPDX-License-Identifier: Apache-2.0 OR MIT
 ![License][license-badge]
 
 **sfc-rs** ([`rand_sfc`][version-url]) is an implementation of
-[Chris Doty-Humphrey's Small Fast Chaotic PRNGs] written in pure [Rust].
+[Chris Doty-Humphrey's Small Fast Counting PRNGs] written in pure [Rust].
 
 This crate provides:
 
@@ -25,11 +25,10 @@ This crate supports version 4 of the SFC algorithms.
 
 ## Usage
 
-Add this to your `Cargo.toml`:
+Run the following command in your project directory:
 
-```toml
-[dependencies]
-rand_sfc = "0.1.0"
+```sh
+cargo add rand_sfc
 ```
 
 ### Crate features
@@ -48,7 +47,7 @@ See the [documentation][docs-url] for more details.
 
 ## Minimum supported Rust version
 
-The minimum supported Rust version (MSRV) of this library is v1.63.0.
+The minimum supported Rust version (MSRV) of this library is v1.85.0.
 
 ## Source code
 
@@ -89,7 +88,7 @@ licensing information.
 [docs-badge]: https://img.shields.io/docsrs/rand_sfc?style=for-the-badge&logo=docsdotrs&label=Docs.rs
 [docs-url]: https://docs.rs/rand_sfc
 [license-badge]: https://img.shields.io/crates/l/rand_sfc?style=for-the-badge
-[Chris Doty-Humphrey's Small Fast Chaotic PRNGs]: https://pracrand.sourceforge.net/RNG_engines.txt
+[Chris Doty-Humphrey's Small Fast Counting PRNGs]: https://pracrand.sourceforge.net/RNG_engines.txt
 [Rust]: https://www.rust-lang.org/
 [`serde`]: https://serde.rs/
 [CHANGELOG.adoc]: CHANGELOG.adoc
