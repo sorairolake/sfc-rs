@@ -9,6 +9,9 @@ use rand_core::{RngCore, SeedableRng, impls, le};
 /// A sfc64 random number generator.
 ///
 /// The sfc64 algorithm is not suitable for cryptographic uses but is very fast.
+/// This algorithm has a 256-bit state and outputs 64-bit random numbers. The
+/// average period of this algorithm is approximately 2<sup>255</sup>, and the
+/// minimum period is greater than or equal to 2<sup>64</sup>.
 ///
 /// # Examples
 ///
@@ -28,6 +31,33 @@ pub struct Sfc64 {
     b: u64,
     c: u64,
     counter: u64,
+}
+
+impl Sfc64 {
+    /// Creates a new `Sfc64` using the given seeds `a`, `b`, and `c`.
+    ///
+    /// # Examples
+    ///
+    /// ```
+    /// # use rand_sfc::{Sfc64, rand_core::RngCore};
+    /// #
+    /// let mut rng = Sfc64::new(0, 0, 0);
+    /// assert_eq!(rng.next_u64(), 0x3acf_a029_e3cc_6041);
+    /// ```
+    #[must_use]
+    #[inline]
+    pub fn new(a: u64, b: u64, c: u64) -> Self {
+        let mut state = Self {
+            a,
+            b,
+            c,
+            counter: 1,
+        };
+        for _ in 0..12 {
+            state.next_u64();
+        }
+        state
+    }
 }
 
 impl RngCore for Sfc64 {
@@ -64,16 +94,7 @@ impl SeedableRng for Sfc64 {
     fn from_seed(seed: Self::Seed) -> Self {
         let mut s = [u64::default(); 3];
         le::read_u64_into(&seed, &mut s);
-        let mut state = Self {
-            a: s[0],
-            b: s[1],
-            c: s[2],
-            counter: 1,
-        };
-        for _ in 0..12 {
-            state.next_u64();
-        }
-        state
+        Self::new(s[0], s[1], s[2])
     }
 }
 
@@ -146,6 +167,14 @@ mod tests {
             Sfc64::from_seed([u8::default(); 24]),
             Sfc64::from_seed([u8::MAX; 24])
         );
+    }
+
+    #[test]
+    fn new() {
+        let mut rng = Sfc64::new(u64::default(), u64::default(), u64::default());
+        for e in EXPECTED {
+            assert_eq!(rng.next_u64(), e);
+        }
     }
 
     #[test]

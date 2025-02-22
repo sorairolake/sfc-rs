@@ -16,6 +16,10 @@ project adheres to https://semver.org/[Semantic Versioning].
 
 == {compare-url}/v0.1.0\...HEAD[Unreleased]
 
+=== Added
+
+* Add `Sfc32::new` and `Sfc64::new` methods ({pull-request-url}/11[#11])
+
 === Changed
 
 * Bump MSRV to 1.85.0 ({pull-request-url}/9[#9])

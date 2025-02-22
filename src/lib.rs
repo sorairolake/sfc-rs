@@ -3,14 +3,27 @@
 // SPDX-License-Identifier: Apache-2.0 OR MIT
 
 //! The `rand_sfc` crate is an implementation of [Chris Doty-Humphrey's Small
-//! Fast Chaotic PRNGs].
+//! Fast Counting PRNGs].
 //!
 //! The SFC algorithms are not suitable for cryptographic uses but are very
 //! fast.
 //!
 //! This crate supports version 4 of the SFC algorithms.
 //!
-//! [Chris Doty-Humphrey's Small Fast Chaotic PRNGs]: https://pracrand.sourceforge.net/RNG_engines.txt
+//! # Examples
+//!
+//! ```
+//! use rand_sfc::{
+//!     Sfc64,
+//!     rand_core::{RngCore, SeedableRng},
+//! };
+//!
+//! let mut rng = Sfc64::seed_from_u64(0);
+//! let x = rng.next_u64();
+//! assert_eq!(x, 0x68ee_fb29_e2a4_f4ab);
+//! ```
+//!
+//! [Chris Doty-Humphrey's Small Fast Counting PRNGs]: https://pracrand.sourceforge.net/RNG_engines.txt
 
 #![doc(html_root_url = "https://docs.rs/rand_sfc/0.1.0/")]
 #![no_std]

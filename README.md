@@ -13,7 +13,7 @@ SPDX-License-Identifier: Apache-2.0 OR MIT
 ![License][license-badge]
 
 **sfc-rs** ([`rand_sfc`][version-url]) is an implementation of
-[Chris Doty-Humphrey's Small Fast Chaotic PRNGs] written in pure [Rust].
+[Chris Doty-Humphrey's Small Fast Counting PRNGs] written in pure [Rust].
 
 This crate provides:
 
@@ -88,7 +88,7 @@ licensing information.
 [docs-badge]: https://img.shields.io/docsrs/rand_sfc?style=for-the-badge&logo=docsdotrs&label=Docs.rs
 [docs-url]: https://docs.rs/rand_sfc
 [license-badge]: https://img.shields.io/crates/l/rand_sfc?style=for-the-badge
-[Chris Doty-Humphrey's Small Fast Chaotic PRNGs]: https://pracrand.sourceforge.net/RNG_engines.txt
+[Chris Doty-Humphrey's Small Fast Counting PRNGs]: https://pracrand.sourceforge.net/RNG_engines.txt
 [Rust]: https://www.rust-lang.org/
 [`serde`]: https://serde.rs/
 [CHANGELOG.adoc]: CHANGELOG.adoc

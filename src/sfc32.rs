@@ -9,6 +9,9 @@ use rand_core::{RngCore, SeedableRng, impls, le};
 /// A sfc32 random number generator.
 ///
 /// The sfc32 algorithm is not suitable for cryptographic uses but is very fast.
+/// This algorithm has a 128-bit state and outputs 32-bit random numbers. The
+/// average period of this algorithm is approximately 2<sup>127</sup>, and the
+/// minimum period is greater than or equal to 2<sup>32</sup>.
 ///
 /// # Examples
 ///
@@ -28,6 +31,33 @@ pub struct Sfc32 {
     b: u32,
     c: u32,
     counter: u32,
+}
+
+impl Sfc32 {
+    /// Creates a new `Sfc32` using the given seeds `a`, `b`, and `c`.
+    ///
+    /// # Examples
+    ///
+    /// ```
+    /// # use rand_sfc::{Sfc32, rand_core::RngCore};
+    /// #
+    /// let mut rng = Sfc32::new(0, 0, 0);
+    /// assert_eq!(rng.next_u32(), 0x5146_76c3);
+    /// ```
+    #[must_use]
+    #[inline]
+    pub fn new(a: u32, b: u32, c: u32) -> Self {
+        let mut state = Self {
+            a,
+            b,
+            c,
+            counter: 1,
+        };
+        for _ in 0..12 {
+            state.next_u32();
+        }
+        state
+    }
 }
 
 impl RngCore for Sfc32 {
@@ -63,16 +93,7 @@ impl SeedableRng for Sfc32 {
     fn from_seed(seed: Self::Seed) -> Self {
         let mut s = [u32::default(); 3];
         le::read_u32_into(&seed, &mut s);
-        let mut state = Self {
-            a: s[0],
-            b: s[1],
-            c: s[2],
-            counter: 1,
-        };
-        for _ in 0..12 {
-            state.next_u32();
-        }
-        state
+        Self::new(s[0], s[1], s[2])
     }
 }
 
@@ -141,6 +162,14 @@ mod tests {
             Sfc32::from_seed([u8::default(); 12]),
             Sfc32::from_seed([u8::MAX; 12])
         );
+    }
+
+    #[test]
+    fn new() {
+        let mut rng = Sfc32::new(u32::default(), u32::default(), u32::default());
+        for e in EXPECTED {
+            assert_eq!(rng.next_u32(), e);
+        }
     }
 
     #[test]
