@@ -25,6 +25,8 @@ rand_core = "0.9.2"
 serde = { version = "1.0.218", default-features = false, features = ["derive"], optional = true }
 
 [dev-dependencies]
+anyhow = "1.0.96"
+clap = { version = "4.5.30", features = ["derive"] }
 rand_core = { version = "0.9.2", features = ["os_rng"] }
 serde_json = "1.0.139"
 
