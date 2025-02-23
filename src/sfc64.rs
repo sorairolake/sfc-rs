@@ -144,13 +144,13 @@ mod tests {
 
     #[test]
     fn clone() {
-        let rng = Sfc64::from_seed([u8::default(); 24]);
+        let rng = Sfc64::from_seed(Default::default());
         assert_eq!(rng.clone(), rng);
     }
 
     #[test]
     fn debug() {
-        let rng = Sfc64::from_seed([u8::default(); 24]);
+        let rng = Sfc64::from_seed(Default::default());
         assert_eq!(
             format!("{rng:?}"),
             "Sfc64 { a: 3105171942637071872, b: 1132609933517779508, c: 3891116077132813732, counter: 13 }"
@@ -160,11 +160,11 @@ mod tests {
     #[test]
     fn equality() {
         assert_eq!(
-            Sfc64::from_seed([u8::default(); 24]),
-            Sfc64::from_seed([u8::default(); 24])
+            Sfc64::from_seed(Default::default()),
+            Sfc64::from_seed(Default::default())
         );
         assert_ne!(
-            Sfc64::from_seed([u8::default(); 24]),
+            Sfc64::from_seed(Default::default()),
             Sfc64::from_seed([u8::MAX; 24])
         );
     }
@@ -179,7 +179,7 @@ mod tests {
 
     #[test]
     fn next_u32() {
-        let mut rng = Sfc64::from_seed([u8::default(); 24]);
+        let mut rng = Sfc64::from_seed(Default::default());
         for e in EXPECTED {
             assert_eq!(rng.next_u32(), e as u32);
         }
@@ -187,7 +187,7 @@ mod tests {
 
     #[test]
     fn next_u64() {
-        let mut rng = Sfc64::from_seed([u8::default(); 24]);
+        let mut rng = Sfc64::from_seed(Default::default());
         for e in EXPECTED {
             assert_eq!(rng.next_u64(), e);
         }
@@ -195,7 +195,7 @@ mod tests {
 
     #[test]
     fn fill_bytes() {
-        let mut rng = Sfc64::from_seed([u8::default(); 24]);
+        let mut rng = Sfc64::from_seed(Default::default());
         let mut dst = [u8::default(); 128];
         rng.fill_bytes(&mut dst);
         assert_eq!(dst, EXPECTED_BYTES);
@@ -216,7 +216,7 @@ mod tests {
     #[cfg(feature = "serde")]
     #[test]
     fn serde() {
-        let mut rng = Sfc64::from_seed([u8::default(); 24]);
+        let mut rng = Sfc64::from_seed(Default::default());
 
         let json = serde_json::to_string(&rng).unwrap();
         assert_eq!(
