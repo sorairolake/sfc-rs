@@ -8,6 +8,15 @@
 //! The SFC algorithms are not suitable for cryptographic uses but are very
 //! fast.
 //!
+//! This crate provides:
+//!
+//! - [ ] sfc16
+//! - [x] sfc32
+//! - [x] sfc64
+//!
+//! The sfc32 algorithm is implemented as [`Sfc32`], and the sfc64 algorithm is
+//! implemented as [`Sfc64`].
+//!
 //! This crate supports version 4 of the SFC algorithms.
 //!
 //! # Examples
