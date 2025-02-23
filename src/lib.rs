@@ -8,6 +8,15 @@
 //! The SFC algorithms are not suitable for cryptographic uses but are very
 //! fast.
 //!
+//! This crate provides:
+//!
+//! - [ ] sfc16
+//! - [x] sfc32
+//! - [x] sfc64
+//!
+//! The sfc32 algorithm is implemented as [`Sfc32`], and the sfc64 algorithm is
+//! implemented as [`Sfc64`].
+//!
 //! This crate supports version 4 of the SFC algorithms.
 //!
 //! # Examples
@@ -25,7 +34,7 @@
 //!
 //! [Chris Doty-Humphrey's Small Fast Counting PRNGs]: https://pracrand.sourceforge.net/RNG_engines.txt
 
-#![doc(html_root_url = "https://docs.rs/rand_sfc/0.1.1/")]
+#![doc(html_root_url = "https://docs.rs/rand_sfc/0.1.2/")]
 #![no_std]
 #![cfg_attr(docsrs, feature(doc_auto_cfg, doc_cfg))]
 // Lint levels of rustc.

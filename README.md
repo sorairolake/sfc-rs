@@ -17,11 +17,14 @@ SPDX-License-Identifier: Apache-2.0 OR MIT
 
 This crate provides:
 
-- [x] sfc64
-- [x] sfc32
 - [ ] sfc16
+- [x] sfc32
+- [x] sfc64
 
 This crate supports version 4 of the SFC algorithms.
+
+> [!IMPORTANT]
+> This crate is not part of the [Rand project].
 
 ## Usage
 
@@ -90,11 +93,11 @@ licensing information.
 [license-badge]: https://img.shields.io/crates/l/rand_sfc?style=for-the-badge
 [Chris Doty-Humphrey's Small Fast Counting PRNGs]: https://pracrand.sourceforge.net/RNG_engines.txt
 [Rust]: https://www.rust-lang.org/
+[Rand project]: https://github.com/rust-random/rand
 [`serde`]: https://serde.rs/
 [CHANGELOG.adoc]: CHANGELOG.adoc
 [CONTRIBUTING.adoc]: CONTRIBUTING.adoc
 [`rand_core`]: https://crates.io/crates/rand_core
-[Rand project]: https://github.com/rust-random/rand
 [PractRand]: https://pracrand.sourceforge.net/
 [public domain]: https://pracrand.sourceforge.net/license.txt
 [AUTHORS.adoc]: AUTHORS.adoc
