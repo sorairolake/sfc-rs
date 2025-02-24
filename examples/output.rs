@@ -9,10 +9,7 @@ use std::io::{self, Write};
 
 use anyhow::Context;
 use clap::{Parser, ValueEnum};
-use rand_sfc::{
-    Sfc32, Sfc64,
-    rand_core::{RngCore, SeedableRng},
-};
+use rand_sfc::{Sfc32, Sfc64, rand_core::RngCore};
 
 #[derive(Debug, Parser)]
 #[command(version, about)]
@@ -44,11 +41,11 @@ fn main() -> anyhow::Result<()> {
     let mut buf = vec![u8::default(); opt.bytes];
     match opt.rng {
         Rng::Sfc32 => {
-            let mut rng = Sfc32::seed_from_u64(opt.seed);
+            let mut rng = Sfc32::new_u64(opt.seed);
             rng.fill_bytes(&mut buf);
         }
         Rng::Sfc64 => {
-            let mut rng = Sfc64::seed_from_u64(opt.seed);
+            let mut rng = Sfc64::new_u64(opt.seed);
             rng.fill_bytes(&mut buf);
         }
     }

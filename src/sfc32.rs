@@ -34,7 +34,7 @@ pub struct Sfc32 {
 }
 
 impl Sfc32 {
-    /// Creates a new `Sfc32` using the given seeds `a`, `b`, and `c`.
+    /// Creates a new `Sfc32` using the given seeds.
     ///
     /// # Examples
     ///
@@ -57,6 +57,34 @@ impl Sfc32 {
             state.next_u32();
         }
         state
+    }
+
+    #[allow(clippy::cast_possible_truncation)]
+    /// Creates a new `Sfc32` using a [`u64`] seed.
+    ///
+    /// This method is equivalent to providing zero for the `a` parameter, the
+    /// lower 32-bit of `seed` for the `b` parameter, and the higher 32-bit of
+    /// `seed` for the `c` parameter of [`Sfc32::new`].
+    ///
+    /// <div class="warning">
+    ///
+    /// Note that the result of this method is different from the result of
+    /// [`Sfc32::seed_from_u64`].
+    ///
+    /// </div>
+    ///
+    /// # Examples
+    ///
+    /// ```
+    /// # use rand_sfc::{Sfc32, rand_core::RngCore};
+    /// #
+    /// let mut rng = Sfc32::new_u64(0);
+    /// assert_eq!(rng.next_u32(), 0x5146_76c3);
+    /// ```
+    #[must_use]
+    #[inline]
+    pub fn new_u64(seed: u64) -> Self {
+        Self::new(0, seed as u32, (seed >> u32::BITS) as u32)
     }
 }
 
@@ -167,6 +195,14 @@ mod tests {
     #[test]
     fn new() {
         let mut rng = Sfc32::new(u32::default(), u32::default(), u32::default());
+        for e in EXPECTED {
+            assert_eq!(rng.next_u32(), e);
+        }
+    }
+
+    #[test]
+    fn new_u64() {
+        let mut rng = Sfc32::new_u64(u64::default());
         for e in EXPECTED {
             assert_eq!(rng.next_u32(), e);
         }

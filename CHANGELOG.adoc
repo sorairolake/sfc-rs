@@ -19,6 +19,7 @@ project adheres to https://semver.org/[Semantic Versioning].
 === Added
 
 * Add an example of generating random bytes ({pull-request-url}/17[#17])
+* Add `Sfc32::new_u64` and `Sfc64::new_u64` methods ({pull-request-url}/18[#18])
 
 == {compare-url}/v0.1.1\...v0.1.2[0.1.2] - 2025-02-23
 

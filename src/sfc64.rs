@@ -34,7 +34,7 @@ pub struct Sfc64 {
 }
 
 impl Sfc64 {
-    /// Creates a new `Sfc64` using the given seeds `a`, `b`, and `c`.
+    /// Creates a new `Sfc64` using the given seeds.
     ///
     /// # Examples
     ///
@@ -57,6 +57,32 @@ impl Sfc64 {
             state.next_u64();
         }
         state
+    }
+
+    /// Creates a new `Sfc64` using a [`u64`] seed.
+    ///
+    /// This method is equivalent to providing `seed` for all parameters of
+    /// [`Sfc64::new`].
+    ///
+    /// <div class="warning">
+    ///
+    /// Note that the result of this method is different from the result of
+    /// [`Sfc64::seed_from_u64`].
+    ///
+    /// </div>
+    ///
+    /// # Examples
+    ///
+    /// ```
+    /// # use rand_sfc::{Sfc64, rand_core::RngCore};
+    /// #
+    /// let mut rng = Sfc64::new_u64(0);
+    /// assert_eq!(rng.next_u64(), 0x3acf_a029_e3cc_6041);
+    /// ```
+    #[must_use]
+    #[inline]
+    pub fn new_u64(seed: u64) -> Self {
+        Self::new(seed, seed, seed)
     }
 }
 
@@ -172,6 +198,14 @@ mod tests {
     #[test]
     fn new() {
         let mut rng = Sfc64::new(u64::default(), u64::default(), u64::default());
+        for e in EXPECTED {
+            assert_eq!(rng.next_u64(), e);
+        }
+    }
+
+    #[test]
+    fn new_u64() {
+        let mut rng = Sfc64::new_u64(u64::default());
         for e in EXPECTED {
             assert_eq!(rng.next_u64(), e);
         }
