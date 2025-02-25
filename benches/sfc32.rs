@@ -13,6 +13,21 @@ use rand_sfc::{
 use test::Bencher;
 
 #[bench]
+fn equality(b: &mut Bencher) {
+    b.iter(|| Sfc32::from_seed(Default::default()) == Sfc32::from_seed(Default::default()));
+}
+
+#[bench]
+fn new(b: &mut Bencher) {
+    b.iter(|| Sfc32::new(u32::default(), u32::default(), u32::default()));
+}
+
+#[bench]
+fn new_u64(b: &mut Bencher) {
+    b.iter(|| Sfc32::new_u64(u64::default()));
+}
+
+#[bench]
 fn next_u32(b: &mut Bencher) {
     let mut rng = Sfc32::from_os_rng();
     b.iter(|| rng.next_u32());
@@ -27,6 +42,11 @@ fn next_u64(b: &mut Bencher) {
 #[bench]
 fn fill_bytes(b: &mut Bencher) {
     let mut rng = Sfc32::from_os_rng();
-    let mut dst = [u8::default(); 64];
+    let mut dst = [u8::default(); 4];
     b.iter(|| rng.fill_bytes(&mut dst));
+}
+
+#[bench]
+fn from_seed(b: &mut Bencher) {
+    b.iter(|| Sfc32::from_seed(Default::default()));
 }

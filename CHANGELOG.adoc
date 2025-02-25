@@ -14,6 +14,13 @@ All notable changes to this project will be documented in this file.
 The format is based on https://keepachangelog.com/[Keep a Changelog], and this
 project adheres to https://semver.org/[Semantic Versioning].
 
+== {compare-url}/v0.1.2\...v0.1.3[0.1.3] - 2025-02-25
+
+=== Added
+
+* Add an example of generating random bytes ({pull-request-url}/17[#17])
+* Add `Sfc32::new_u64` and `Sfc64::new_u64` methods ({pull-request-url}/18[#18])
+
 == {compare-url}/v0.1.1\...v0.1.2[0.1.2] - 2025-02-23
 
 === Changed
