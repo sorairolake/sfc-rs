@@ -322,6 +322,26 @@ mod tests {
     }
 
     #[test]
+    fn fill_bytes_per_chunk() {
+        {
+            let mut rng = Sfc64::from_seed(Default::default());
+            let mut dst = [u8::default(); 8];
+            for e in EXPECTED_BYTES_1.chunks_exact(dst.len()) {
+                rng.fill_bytes(&mut dst);
+                assert_eq!(dst, e);
+            }
+        }
+        {
+            let mut rng = Sfc64::from_seed(SEED_2);
+            let mut dst = [u8::default(); 8];
+            for e in EXPECTED_BYTES_2.chunks_exact(dst.len()) {
+                rng.fill_bytes(&mut dst);
+                assert_eq!(dst, e);
+            }
+        }
+    }
+
+    #[test]
     fn seed_type() {
         assert_eq!(
             any::type_name::<<Sfc64 as SeedableRng>::Seed>(),
