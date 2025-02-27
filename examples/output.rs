@@ -25,7 +25,7 @@ struct Opt {
     #[arg(value_enum, ignore_case(true))]
     rng: Rng,
 
-    /// Number of bytes to output.
+    /// Number of bytes to generate.
     ///
     /// For the value which can be specified for <BYTES>, see <https://docs.rs/byte-unit>.
     bytes: Byte,
