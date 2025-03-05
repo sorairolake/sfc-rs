@@ -13,6 +13,10 @@ use rand_core::{RngCore, SeedableRng, impls, le};
 /// average period of this algorithm is approximately 2<sup>127</sup>, and the
 /// minimum period is greater than or equal to 2<sup>32</sup>.
 ///
+/// The algorithm used here is translated from the reference implementation
+/// provided by [PractRand] version pre0.95, which is licensed under the [public
+/// domain].
+///
 /// # Examples
 ///
 /// ```
@@ -24,6 +28,9 @@ use rand_core::{RngCore, SeedableRng, impls, le};
 /// let mut rng = Sfc32::from_seed([0; 12]);
 /// assert_eq!(rng.next_u32(), 0x5146_76c3);
 /// ```
+///
+/// [PractRand]: https://pracrand.sourceforge.net/
+/// [public domain]: https://pracrand.sourceforge.net/license.txt
 #[derive(Clone, Debug, Eq, PartialEq)]
 #[cfg_attr(feature = "serde", derive(serde::Deserialize, serde::Serialize))]
 pub struct Sfc32 {
@@ -306,6 +313,26 @@ mod tests {
             let mut dst = [u8::default(); 64];
             rng.fill_bytes(&mut dst);
             assert_eq!(dst, EXPECTED_BYTES_2);
+        }
+    }
+
+    #[test]
+    fn fill_bytes_per_chunk() {
+        {
+            let mut rng = Sfc32::from_seed(Default::default());
+            let mut dst = [u8::default(); 4];
+            for e in EXPECTED_BYTES_1.chunks_exact(dst.len()) {
+                rng.fill_bytes(&mut dst);
+                assert_eq!(dst, e);
+            }
+        }
+        {
+            let mut rng = Sfc32::from_seed(SEED_2);
+            let mut dst = [u8::default(); 4];
+            for e in EXPECTED_BYTES_2.chunks_exact(dst.len()) {
+                rng.fill_bytes(&mut dst);
+                assert_eq!(dst, e);
+            }
         }
     }
 
