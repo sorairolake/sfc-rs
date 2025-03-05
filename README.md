@@ -70,7 +70,8 @@ Please see [CONTRIBUTING.adoc].
 This crate depends on the [`rand_core`] crate created by the [Rand project].
 
 The implementation of this crate is based on the reference implementation
-provided by [PractRand], which is licensed under the [public domain].
+provided by [PractRand] version pre0.95, which is licensed under the
+[public domain].
 
 ## License
 

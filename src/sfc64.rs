@@ -13,6 +13,10 @@ use rand_core::{RngCore, SeedableRng, impls, le};
 /// average period of this algorithm is approximately 2<sup>255</sup>, and the
 /// minimum period is greater than or equal to 2<sup>64</sup>.
 ///
+/// The algorithm used here is translated from the reference implementation
+/// provided by [PractRand] version pre0.95, which is licensed under the [public
+/// domain].
+///
 /// # Examples
 ///
 /// ```
@@ -24,6 +28,9 @@ use rand_core::{RngCore, SeedableRng, impls, le};
 /// let mut rng = Sfc64::from_seed([0; 24]);
 /// assert_eq!(rng.next_u64(), 0x3acf_a029_e3cc_6041);
 /// ```
+///
+/// [PractRand]: https://pracrand.sourceforge.net/
+/// [public domain]: https://pracrand.sourceforge.net/license.txt
 #[derive(Clone, Debug, Eq, PartialEq)]
 #[cfg_attr(feature = "serde", derive(serde::Deserialize, serde::Serialize))]
 pub struct Sfc64 {
