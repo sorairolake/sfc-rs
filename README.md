@@ -102,4 +102,4 @@ licensing information.
 [PractRand]: https://pracrand.sourceforge.net/
 [public domain]: https://pracrand.sourceforge.net/license.txt
 [AUTHORS.adoc]: AUTHORS.adoc
-[_REUSE Specification_]: https://reuse.software/spec/
+[_REUSE Specification_]: https://reuse.software/spec-3.3/
