@@ -34,7 +34,7 @@
 //!
 //! [Chris Doty-Humphrey's Small Fast Counting PRNGs]: https://pracrand.sourceforge.net/RNG_engines.txt
 
-#![doc(html_root_url = "https://docs.rs/rand_sfc/0.1.4/")]
+#![doc(html_root_url = "https://docs.rs/rand_sfc/0.1.5/")]
 #![no_std]
 #![cfg_attr(docsrs, feature(doc_auto_cfg, doc_cfg))]
 // Lint levels of rustc.
