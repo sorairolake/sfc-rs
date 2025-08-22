@@ -1,7 +1,7 @@
 <!--
 SPDX-FileCopyrightText: 2025 Shun Sakai
 
-SPDX-License-Identifier: Apache-2.0 OR MIT
+SPDX-License-Identifier: CC-BY-4.0
 -->
 
 # sfc-rs
@@ -80,7 +80,7 @@ Copyright (C) 2025 Shun Sakai (see [AUTHORS.adoc])
 This library is distributed under the terms of either the _Apache License 2.0_
 or the _MIT License_.
 
-This project is compliant with version 3.2 of the [_REUSE Specification_]. See
+This project is compliant with version 3.3 of the [_REUSE Specification_]. See
 copyright notices of individual files for more details on copyright and
 licensing information.
 
@@ -102,4 +102,4 @@ licensing information.
 [PractRand]: https://pracrand.sourceforge.net/
 [public domain]: https://pracrand.sourceforge.net/license.txt
 [AUTHORS.adoc]: AUTHORS.adoc
-[_REUSE Specification_]: https://reuse.software/spec/
+[_REUSE Specification_]: https://reuse.software/spec-3.3/
