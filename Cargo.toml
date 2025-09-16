@@ -5,12 +5,10 @@
 [package]
 name = "rand_sfc"
 version = "0.1.5"
-authors = ["Shun Sakai <sorairolake@protonmail.ch>"]
 edition = "2024"
 rust-version = "1.85.0"
 description = "Chris Doty-Humphrey's SFC PRNGs"
 documentation = "https://docs.rs/rand_sfc"
-readme = "README.md"
 repository = "https://github.com/sorairolake/sfc-rs"
 license = "Apache-2.0 OR MIT"
 keywords = ["random", "rng", "sfc"]
