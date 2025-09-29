@@ -20,7 +20,7 @@ all-features = true
 
 [dependencies]
 rand_core = "0.9.3"
-serde = { version = "1.0.226", default-features = false, features = ["derive"], optional = true }
+serde = { version = "1.0.228", default-features = false, features = ["derive"], optional = true }
 
 [dev-dependencies]
 anyhow = "1.0.100"
