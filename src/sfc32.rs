@@ -5,6 +5,8 @@
 //! An implementation of the sfc32 random number generator.
 
 use rand_core::{RngCore, SeedableRng, impls, le};
+#[cfg(feature = "serde")]
+use serde::{Deserialize, Serialize};
 
 /// A sfc32 random number generator.
 ///
@@ -32,7 +34,7 @@ use rand_core::{RngCore, SeedableRng, impls, le};
 /// [PractRand]: https://pracrand.sourceforge.net/
 /// [public domain]: https://pracrand.sourceforge.net/license.txt
 #[derive(Clone, Debug, Eq, PartialEq)]
-#[cfg_attr(feature = "serde", derive(serde::Deserialize, serde::Serialize))]
+#[cfg_attr(feature = "serde", derive(Deserialize, Serialize))]
 pub struct Sfc32 {
     a: u32,
     b: u32,
