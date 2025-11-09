@@ -109,10 +109,10 @@ impl RngCore for Sfc64 {
         const LEFT_SHIFT: u32 = 3;
 
         let tmp = self.a.wrapping_add(self.b).wrapping_add(self.counter);
-        self.counter += 1;
         self.a = self.b ^ (self.b >> RIGHT_SHIFT);
         self.b = self.c.wrapping_add(self.c << LEFT_SHIFT);
         self.c = self.c.rotate_left(ROTATION).wrapping_add(tmp);
+        self.counter = self.counter.wrapping_add(1);
         tmp
     }
 
