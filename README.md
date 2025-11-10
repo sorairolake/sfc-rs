@@ -64,6 +64,8 @@ Please see [CONTRIBUTING.adoc].
 
 ## Acknowledgment
 
+This crate depends on the [`rand_core`] crate created by the [Rand project].
+
 The implementation of this crate is based on the reference implementation
 provided by [PractRand] version pre0.95, which is licensed under the
 [public domain].
@@ -92,6 +94,8 @@ licensing information.
 [`serde`]: https://serde.rs/
 [CHANGELOG.adoc]: CHANGELOG.adoc
 [CONTRIBUTING.adoc]: CONTRIBUTING.adoc
+[`rand_core`]: https://crates.io/crates/rand_core
+[Rand project]: https://github.com/rust-random/rand
 [PractRand]: https://pracrand.sourceforge.net/
 [public domain]: https://pracrand.sourceforge.net/license.txt
 [AUTHORS.adoc]: AUTHORS.adoc
