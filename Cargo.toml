@@ -3,14 +3,12 @@
 # SPDX-License-Identifier: Apache-2.0 OR MIT
 
 [package]
-name = "rand_sfc"
-version = "0.1.5"
-authors = ["Shun Sakai <sorairolake@protonmail.ch>"]
+name = "sfc-prng"
+version = "0.2.0"
 edition = "2024"
 rust-version = "1.85.0"
 description = "Chris Doty-Humphrey's SFC PRNGs"
-documentation = "https://docs.rs/rand_sfc"
-readme = "README.md"
+documentation = "https://docs.rs/sfc-prng"
 repository = "https://github.com/sorairolake/sfc-rs"
 license = "Apache-2.0 OR MIT"
 keywords = ["random", "rng", "sfc"]
@@ -22,14 +20,14 @@ all-features = true
 
 [dependencies]
 rand_core = "0.9.3"
-serde = { version = "1.0.219", default-features = false, features = ["derive"], optional = true }
+serde = { version = "1.0.228", default-features = false, features = ["derive"], optional = true }
 
 [dev-dependencies]
-anyhow = "1.0.99"
+anyhow = "1.0.100"
 byte-unit = "5.1.6"
-clap = { version = "4.5.45", features = ["derive"] }
+clap = { version = "4.5.51", features = ["derive"] }
 rand_core = { version = "0.9.3", features = ["os_rng"] }
-serde_json = "1.0.143"
+serde_json = "1.0.145"
 
 [features]
 serde = ["dep:serde"]

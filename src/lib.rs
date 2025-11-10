@@ -2,7 +2,7 @@
 //
 // SPDX-License-Identifier: Apache-2.0 OR MIT
 
-//! The `rand_sfc` crate is an implementation of [Chris Doty-Humphrey's Small
+//! The `sfc-prng` crate is an implementation of [Chris Doty-Humphrey's Small
 //! Fast Counting PRNGs].
 //!
 //! The SFC algorithms are not suitable for cryptographic uses but are very
@@ -22,7 +22,7 @@
 //! # Examples
 //!
 //! ```
-//! use rand_sfc::{
+//! use sfc_prng::{
 //!     Sfc64,
 //!     rand_core::{RngCore, SeedableRng},
 //! };
@@ -34,9 +34,9 @@
 //!
 //! [Chris Doty-Humphrey's Small Fast Counting PRNGs]: https://pracrand.sourceforge.net/RNG_engines.txt
 
-#![doc(html_root_url = "https://docs.rs/rand_sfc/0.1.5/")]
+#![doc(html_root_url = "https://docs.rs/sfc-prng/0.2.0/")]
 #![no_std]
-#![cfg_attr(docsrs, feature(doc_auto_cfg, doc_cfg))]
+#![cfg_attr(docsrs, feature(doc_cfg))]
 // Lint levels of rustc.
 #![deny(missing_docs)]
 

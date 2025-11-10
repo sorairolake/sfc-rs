@@ -5,6 +5,8 @@
 //! An implementation of the sfc64 random number generator.
 
 use rand_core::{RngCore, SeedableRng, impls, le};
+#[cfg(feature = "serde")]
+use serde::{Deserialize, Serialize};
 
 /// A sfc64 random number generator.
 ///
@@ -20,7 +22,7 @@ use rand_core::{RngCore, SeedableRng, impls, le};
 /// # Examples
 ///
 /// ```
-/// # use rand_sfc::{
+/// # use sfc_prng::{
 /// #     Sfc64,
 /// #     rand_core::{RngCore, SeedableRng},
 /// # };
@@ -32,7 +34,7 @@ use rand_core::{RngCore, SeedableRng, impls, le};
 /// [PractRand]: https://pracrand.sourceforge.net/
 /// [public domain]: https://pracrand.sourceforge.net/license.txt
 #[derive(Clone, Debug, Eq, PartialEq)]
-#[cfg_attr(feature = "serde", derive(serde::Deserialize, serde::Serialize))]
+#[cfg_attr(feature = "serde", derive(Deserialize, Serialize))]
 pub struct Sfc64 {
     a: u64,
     b: u64,
@@ -46,7 +48,7 @@ impl Sfc64 {
     /// # Examples
     ///
     /// ```
-    /// # use rand_sfc::{Sfc64, rand_core::RngCore};
+    /// # use sfc_prng::{Sfc64, rand_core::RngCore};
     /// #
     /// let mut rng = Sfc64::new(0, 0, 0);
     /// assert_eq!(rng.next_u64(), 0x3acf_a029_e3cc_6041);
@@ -81,7 +83,7 @@ impl Sfc64 {
     /// # Examples
     ///
     /// ```
-    /// # use rand_sfc::{Sfc64, rand_core::RngCore};
+    /// # use sfc_prng::{Sfc64, rand_core::RngCore};
     /// #
     /// let mut rng = Sfc64::new_u64(0);
     /// assert_eq!(rng.next_u64(), 0x3acf_a029_e3cc_6041);
@@ -107,10 +109,10 @@ impl RngCore for Sfc64 {
         const LEFT_SHIFT: u32 = 3;
 
         let tmp = self.a.wrapping_add(self.b).wrapping_add(self.counter);
-        self.counter += 1;
         self.a = self.b ^ (self.b >> RIGHT_SHIFT);
         self.b = self.c.wrapping_add(self.c << LEFT_SHIFT);
         self.c = self.c.rotate_left(ROTATION).wrapping_add(tmp);
+        self.counter = self.counter.wrapping_add(1);
         tmp
     }
 

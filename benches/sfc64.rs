@@ -6,7 +6,7 @@
 
 extern crate test;
 
-use rand_sfc::{
+use sfc_prng::{
     Sfc64,
     rand_core::{RngCore, SeedableRng},
 };

@@ -16,7 +16,7 @@ use std::{
 use anyhow::Context;
 use byte_unit::Byte;
 use clap::{Parser, ValueEnum};
-use rand_sfc::{Sfc32, Sfc64, rand_core::RngCore};
+use sfc_prng::{Sfc32, Sfc64, rand_core::RngCore};
 
 #[derive(Debug, Parser)]
 #[command(version, about)]
@@ -67,7 +67,7 @@ impl fmt::Display for Seed {
 impl FromStr for Seed {
     type Err = ParseIntError;
 
-    fn from_str(seed: &str) -> Result<Self, ParseIntError> {
+    fn from_str(seed: &str) -> Result<Self, Self::Err> {
         if seed.starts_with("0x") {
             u64::from_str_radix(seed.trim_start_matches("0x"), 16)
         } else {

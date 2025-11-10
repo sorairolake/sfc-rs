@@ -18,11 +18,11 @@ clean:
 
 # Check a package
 check:
-    cargo check
+    cargo check --all-features
 
 # Run tests
 test:
-    cargo test
+    cargo test --all-features
 
 # Run benchmarks
 bench:
@@ -30,19 +30,15 @@ bench:
 
 # Run the formatter
 fmt:
-    cargo fmt
-
-# Run the formatter with options
-fmt-with-options:
     cargo +nightly fmt
 
 # Run the linter
 clippy:
-    cargo clippy -- -D warnings
+    cargo clippy --all-features -- -D warnings
 
 # Apply lint suggestions
 clippy-fix:
-    cargo +nightly clippy --fix --allow-dirty --allow-staged -- -D warnings
+    cargo +nightly clippy --all-features --fix --allow-dirty --allow-staged -- -D warnings
 
 # Build the package documentation
 doc $RUSTDOCFLAGS="--cfg docsrs":
