@@ -23,9 +23,6 @@ This crate provides:
 
 This crate supports version 4 of the SFC algorithms.
 
-> [!IMPORTANT]
-> This crate is not part of the [Rand project].
-
 ## Usage
 
 Run the following command in your project directory:
@@ -67,8 +64,6 @@ Please see [CONTRIBUTING.adoc].
 
 ## Acknowledgment
 
-This crate depends on the [`rand_core`] crate created by the [Rand project].
-
 The implementation of this crate is based on the reference implementation
 provided by [PractRand] version pre0.95, which is licensed under the
 [public domain].
@@ -94,11 +89,9 @@ licensing information.
 [license-badge]: https://img.shields.io/crates/l/sfc-prng?style=for-the-badge
 [Chris Doty-Humphrey's Small Fast Counting PRNGs]: https://pracrand.sourceforge.net/RNG_engines.txt
 [Rust]: https://www.rust-lang.org/
-[Rand project]: https://github.com/rust-random/rand
 [`serde`]: https://serde.rs/
 [CHANGELOG.adoc]: CHANGELOG.adoc
 [CONTRIBUTING.adoc]: CONTRIBUTING.adoc
-[`rand_core`]: https://crates.io/crates/rand_core
 [PractRand]: https://pracrand.sourceforge.net/
 [public domain]: https://pracrand.sourceforge.net/license.txt
 [AUTHORS.adoc]: AUTHORS.adoc
