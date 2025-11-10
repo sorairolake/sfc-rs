@@ -12,7 +12,7 @@ SPDX-License-Identifier: CC-BY-4.0
 [![Docs][docs-badge]][docs-url]
 ![License][license-badge]
 
-**sfc-rs** ([`rand_sfc`][version-url]) is an implementation of
+**sfc-rs** ([`sfc-prng`][version-url]) is an implementation of
 [Chris Doty-Humphrey's Small Fast Counting PRNGs] written in pure [Rust].
 
 This crate provides:
@@ -31,7 +31,7 @@ This crate supports version 4 of the SFC algorithms.
 Run the following command in your project directory:
 
 ```sh
-cargo add rand_sfc
+cargo add sfc-prng
 ```
 
 ### Crate features
@@ -86,12 +86,12 @@ licensing information.
 
 [ci-badge]: https://img.shields.io/github/actions/workflow/status/sorairolake/sfc-rs/CI.yaml?branch=develop&style=for-the-badge&logo=github&label=CI
 [ci-url]: https://github.com/sorairolake/sfc-rs/actions?query=branch%3Adevelop+workflow%3ACI++
-[version-badge]: https://img.shields.io/crates/v/rand_sfc?style=for-the-badge&logo=rust
-[version-url]: https://crates.io/crates/rand_sfc
-[msrv-badge]: https://img.shields.io/crates/msrv/rand_sfc?style=for-the-badge&logo=rust
-[docs-badge]: https://img.shields.io/docsrs/rand_sfc?style=for-the-badge&logo=docsdotrs&label=Docs.rs
-[docs-url]: https://docs.rs/rand_sfc
-[license-badge]: https://img.shields.io/crates/l/rand_sfc?style=for-the-badge
+[version-badge]: https://img.shields.io/crates/v/sfc-prng?style=for-the-badge&logo=rust
+[version-url]: https://crates.io/crates/sfc-prng
+[msrv-badge]: https://img.shields.io/crates/msrv/sfc-prng?style=for-the-badge&logo=rust
+[docs-badge]: https://img.shields.io/docsrs/sfc-prng?style=for-the-badge&logo=docsdotrs&label=Docs.rs
+[docs-url]: https://docs.rs/sfc-prng
+[license-badge]: https://img.shields.io/crates/l/sfc-prng?style=for-the-badge
 [Chris Doty-Humphrey's Small Fast Counting PRNGs]: https://pracrand.sourceforge.net/RNG_engines.txt
 [Rust]: https://www.rust-lang.org/
 [Rand project]: https://github.com/rust-random/rand

@@ -460,18 +460,6 @@ dependencies = [
 ]
 
 [[package]]
-name = "rand_sfc"
-version = "0.1.5"
-dependencies = [
- "anyhow",
- "byte-unit",
- "clap",
- "rand_core 0.9.3",
- "serde",
- "serde_json",
-]
-
-[[package]]
 name = "rend"
 version = "0.4.2"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -584,6 +572,18 @@ dependencies = [
  "ryu",
  "serde",
  "serde_core",
+]
+
+[[package]]
+name = "sfc-prng"
+version = "0.1.5"
+dependencies = [
+ "anyhow",
+ "byte-unit",
+ "clap",
+ "rand_core 0.9.3",
+ "serde",
+ "serde_json",
 ]
 
 [[package]]

@@ -22,7 +22,7 @@ use serde::{Deserialize, Serialize};
 /// # Examples
 ///
 /// ```
-/// # use rand_sfc::{
+/// # use sfc_prng::{
 /// #     Sfc64,
 /// #     rand_core::{RngCore, SeedableRng},
 /// # };
@@ -48,7 +48,7 @@ impl Sfc64 {
     /// # Examples
     ///
     /// ```
-    /// # use rand_sfc::{Sfc64, rand_core::RngCore};
+    /// # use sfc_prng::{Sfc64, rand_core::RngCore};
     /// #
     /// let mut rng = Sfc64::new(0, 0, 0);
     /// assert_eq!(rng.next_u64(), 0x3acf_a029_e3cc_6041);
@@ -83,7 +83,7 @@ impl Sfc64 {
     /// # Examples
     ///
     /// ```
-    /// # use rand_sfc::{Sfc64, rand_core::RngCore};
+    /// # use sfc_prng::{Sfc64, rand_core::RngCore};
     /// #
     /// let mut rng = Sfc64::new_u64(0);
     /// assert_eq!(rng.next_u64(), 0x3acf_a029_e3cc_6041);
