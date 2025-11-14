@@ -26,8 +26,6 @@ struct Opt {
     rng: Rng,
 
     /// Number of bytes to generate.
-    ///
-    /// For the value which can be specified for <BYTES>, see <https://docs.rs/byte-unit>.
     bytes: Byte,
 
     /// Random seed to use.
@@ -84,11 +82,11 @@ fn main() -> anyhow::Result<()> {
     let mut buf = vec![u8::default(); bytes];
     match opt.rng {
         Rng::Sfc32 => {
-            let mut rng = Sfc32::new_u64(*opt.seed);
+            let mut rng = Sfc32::new_u64(*opt.seed, None);
             rng.fill_bytes(&mut buf);
         }
         Rng::Sfc64 => {
-            let mut rng = Sfc64::new_u64(*opt.seed);
+            let mut rng = Sfc64::new_u64(*opt.seed, None);
             rng.fill_bytes(&mut buf);
         }
     }
