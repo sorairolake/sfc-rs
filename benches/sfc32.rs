@@ -19,12 +19,12 @@ fn equality(b: &mut Bencher) {
 
 #[bench]
 fn new(b: &mut Bencher) {
-    b.iter(|| Sfc32::new(u32::default(), u32::default(), u32::default()));
+    b.iter(|| Sfc32::new(u32::default(), u32::default(), u32::default(), None));
 }
 
 #[bench]
 fn new_u64(b: &mut Bencher) {
-    b.iter(|| Sfc32::new_u64(u64::default()));
+    b.iter(|| Sfc32::new_u64(u64::default(), None));
 }
 
 #[bench]

@@ -29,12 +29,12 @@
 //!
 //! let mut rng = Sfc64::seed_from_u64(0);
 //! let x = rng.next_u64();
-//! assert_eq!(x, 0x68ee_fb29_e2a4_f4ab);
+//! assert_eq!(x, 0xd396_d4b3_98b6_c85d);
 //! ```
 //!
 //! [Chris Doty-Humphrey's Small Fast Counting PRNGs]: https://pracrand.sourceforge.net/RNG_engines.txt
 
-#![doc(html_root_url = "https://docs.rs/sfc-prng/0.2.0/")]
+#![doc(html_root_url = "https://docs.rs/sfc-prng/0.3.0/")]
 #![no_std]
 #![cfg_attr(docsrs, feature(doc_cfg))]
 // Lint levels of rustc.
