@@ -57,7 +57,6 @@ impl Sfc64 {
     /// assert_eq!(rng.next_u64(), 0xdb90_9c81_8901_599d);
     /// ```
     #[must_use]
-    #[inline]
     pub fn new(a: u64, b: u64, c: u64, rounds: Option<u64>) -> Self {
         let mut state = Self {
             a,
@@ -93,7 +92,6 @@ impl Sfc64 {
     /// assert_eq!(rng.next_u64(), 0x3acf_a029_e3cc_6041);
     /// ```
     #[must_use]
-    #[inline]
     pub fn new_u64(seed: u64, rounds: Option<u64>) -> Self {
         let (a, b, c) = (seed, seed, seed);
         let rounds = rounds.or(Some(12));
@@ -103,12 +101,10 @@ impl Sfc64 {
 
 impl RngCore for Sfc64 {
     #[allow(clippy::cast_possible_truncation)]
-    #[inline]
     fn next_u32(&mut self) -> u32 {
         self.next_u64() as u32
     }
 
-    #[inline]
     fn next_u64(&mut self) -> u64 {
         const ROTATION: u32 = 24;
         const RIGHT_SHIFT: u32 = 11;
@@ -122,7 +118,6 @@ impl RngCore for Sfc64 {
         tmp
     }
 
-    #[inline]
     fn fill_bytes(&mut self, dst: &mut [u8]) {
         impls::fill_bytes_via_next(self, dst);
     }
@@ -131,7 +126,6 @@ impl RngCore for Sfc64 {
 impl SeedableRng for Sfc64 {
     type Seed = [u8; 24];
 
-    #[inline]
     fn from_seed(seed: Self::Seed) -> Self {
         let mut s = [u64::default(); 3];
         le::read_u64_into(&seed, &mut s);

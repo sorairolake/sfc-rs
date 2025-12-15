@@ -57,7 +57,6 @@ impl Sfc32 {
     /// assert_eq!(rng.next_u32(), 0xfb52_c520);
     /// ```
     #[must_use]
-    #[inline]
     pub fn new(a: u32, b: u32, c: u32, rounds: Option<u32>) -> Self {
         let mut state = Self {
             a,
@@ -94,7 +93,6 @@ impl Sfc32 {
     /// assert_eq!(rng.next_u32(), 0x5146_76c3);
     /// ```
     #[must_use]
-    #[inline]
     pub fn new_u64(seed: u64, rounds: Option<u32>) -> Self {
         let (a, b, c) = (0, seed as u32, (seed >> u32::BITS) as u32);
         let rounds = rounds.or(Some(12));
@@ -103,7 +101,6 @@ impl Sfc32 {
 }
 
 impl RngCore for Sfc32 {
-    #[inline]
     fn next_u32(&mut self) -> u32 {
         const ROTATION: u32 = 21;
         const RIGHT_SHIFT: u32 = 9;
@@ -117,12 +114,10 @@ impl RngCore for Sfc32 {
         tmp
     }
 
-    #[inline]
     fn next_u64(&mut self) -> u64 {
         impls::next_u64_via_u32(self)
     }
 
-    #[inline]
     fn fill_bytes(&mut self, dst: &mut [u8]) {
         impls::fill_bytes_via_next(self, dst);
     }
@@ -131,7 +126,6 @@ impl RngCore for Sfc32 {
 impl SeedableRng for Sfc32 {
     type Seed = [u8; 12];
 
-    #[inline]
     fn from_seed(seed: Self::Seed) -> Self {
         let mut s = [u32::default(); 3];
         le::read_u32_into(&seed, &mut s);
