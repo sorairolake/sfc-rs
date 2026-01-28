@@ -29,7 +29,7 @@
 //!
 //! let mut rng = Sfc64::seed_from_u64(0);
 //! let x = rng.next_u64();
-//! assert_eq!(x, 0xd396_d4b3_98b6_c85d);
+//! assert_eq!(x, 0xD396_D4B3_98B6_C85D);
 //! ```
 //!
 //! [Chris Doty-Humphrey's Small Fast Counting PRNGs]: https://pracrand.sourceforge.net/RNG_engines.txt
