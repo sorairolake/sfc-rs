@@ -12,6 +12,10 @@ SPDX-License-Identifier: CC-BY-4.0
 [![Docs][docs-badge]][docs-url]
 ![License][license-badge]
 
+> [!WARNING]
+> This project is no longer maintained. Please use the [`rand_sfc`] crate
+> instead.
+
 **sfc-rs** ([`sfc-prng`][version-url]) is an implementation of
 [Chris Doty-Humphrey's Small Fast Counting PRNGs] written in pure [Rust].
 
@@ -89,6 +93,7 @@ licensing information.
 [docs-badge]: https://img.shields.io/docsrs/sfc-prng?style=for-the-badge&logo=docsdotrs&label=Docs.rs
 [docs-url]: https://docs.rs/sfc-prng
 [license-badge]: https://img.shields.io/crates/l/sfc-prng?style=for-the-badge
+[`rand_sfc`]: https://crates.io/crates/rand_sfc
 [Chris Doty-Humphrey's Small Fast Counting PRNGs]: https://pracrand.sourceforge.net/RNG_engines.txt
 [Rust]: https://www.rust-lang.org/
 [`serde`]: https://serde.rs/
