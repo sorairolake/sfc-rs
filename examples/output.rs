@@ -16,7 +16,7 @@ use std::{
 use anyhow::Context;
 use byte_unit::Byte;
 use clap::{Parser, ValueEnum};
-use sfc_prng::{Sfc32, Sfc64, rand_core::RngCore};
+use sfc_prng::{Sfc32, Sfc64, rand_core::Rng as _};
 
 #[derive(Debug, Parser)]
 #[command(version, about)]

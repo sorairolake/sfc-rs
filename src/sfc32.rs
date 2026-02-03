@@ -4,7 +4,9 @@
 
 //! An implementation of the sfc32 random number generator.
 
-use rand_core::{RngCore, SeedableRng, impls, le};
+use core::convert::Infallible;
+
+use rand_core::{Rng, SeedableRng, TryRng, utils};
 #[cfg(feature = "serde")]
 use serde::{Deserialize, Serialize};
 
@@ -24,7 +26,7 @@ use serde::{Deserialize, Serialize};
 /// ```
 /// # use sfc_prng::{
 /// #     Sfc32,
-/// #     rand_core::{RngCore, SeedableRng},
+/// #     rand_core::{Rng, SeedableRng},
 /// # };
 /// #
 /// let mut rng = Sfc32::from_seed([0; 12]);
@@ -51,7 +53,7 @@ impl Sfc32 {
     /// # Examples
     ///
     /// ```
-    /// # use sfc_prng::{Sfc32, rand_core::RngCore};
+    /// # use sfc_prng::{Sfc32, rand_core::Rng};
     /// #
     /// let mut rng = Sfc32::new(0, 0, 0, None);
     /// assert_eq!(rng.next_u32(), 0xFB52_C520);
@@ -87,7 +89,7 @@ impl Sfc32 {
     /// # Examples
     ///
     /// ```
-    /// # use sfc_prng::{Sfc32, rand_core::RngCore};
+    /// # use sfc_prng::{Sfc32, rand_core::Rng};
     /// #
     /// let mut rng = Sfc32::new_u64(0, None);
     /// assert_eq!(rng.next_u32(), 0x5146_76C3);
@@ -100,8 +102,10 @@ impl Sfc32 {
     }
 }
 
-impl RngCore for Sfc32 {
-    fn next_u32(&mut self) -> u32 {
+impl TryRng for Sfc32 {
+    type Error = Infallible;
+
+    fn try_next_u32(&mut self) -> Result<u32, Self::Error> {
         const ROTATION: u32 = 21;
         const RIGHT_SHIFT: u32 = 9;
         const LEFT_SHIFT: u32 = 3;
@@ -111,15 +115,15 @@ impl RngCore for Sfc32 {
         self.a = self.b ^ (self.b >> RIGHT_SHIFT);
         self.b = self.c.wrapping_add(self.c << LEFT_SHIFT);
         self.c = self.c.rotate_left(ROTATION).wrapping_add(tmp);
-        tmp
+        Ok(tmp)
     }
 
-    fn next_u64(&mut self) -> u64 {
-        impls::next_u64_via_u32(self)
+    fn try_next_u64(&mut self) -> Result<u64, Self::Error> {
+        utils::next_u64_via_u32(self)
     }
 
-    fn fill_bytes(&mut self, dst: &mut [u8]) {
-        impls::fill_bytes_via_next(self, dst);
+    fn try_fill_bytes(&mut self, dst: &mut [u8]) -> Result<(), Self::Error> {
+        utils::fill_bytes_via_next_word(dst, || self.try_next_u32())
     }
 }
 
@@ -127,8 +131,7 @@ impl SeedableRng for Sfc32 {
     type Seed = [u8; 12];
 
     fn from_seed(seed: Self::Seed) -> Self {
-        let mut s = [u32::default(); 3];
-        le::read_u32_into(&seed, &mut s);
+        let s: [_; 3] = utils::read_words(&seed);
         Self::new(s[0], s[1], s[2], None)
     }
 }

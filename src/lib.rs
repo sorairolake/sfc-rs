@@ -24,7 +24,7 @@
 //! ```
 //! use sfc_prng::{
 //!     Sfc64,
-//!     rand_core::{RngCore, SeedableRng},
+//!     rand_core::{Rng, SeedableRng},
 //! };
 //!
 //! let mut rng = Sfc64::seed_from_u64(0);

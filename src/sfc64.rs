@@ -4,7 +4,9 @@
 
 //! An implementation of the sfc64 random number generator.
 
-use rand_core::{RngCore, SeedableRng, impls, le};
+use core::convert::Infallible;
+
+use rand_core::{Rng, SeedableRng, TryRng, utils};
 #[cfg(feature = "serde")]
 use serde::{Deserialize, Serialize};
 
@@ -24,7 +26,7 @@ use serde::{Deserialize, Serialize};
 /// ```
 /// # use sfc_prng::{
 /// #     Sfc64,
-/// #     rand_core::{RngCore, SeedableRng},
+/// #     rand_core::{Rng, SeedableRng},
 /// # };
 /// #
 /// let mut rng = Sfc64::from_seed([0; 24]);
@@ -51,7 +53,7 @@ impl Sfc64 {
     /// # Examples
     ///
     /// ```
-    /// # use sfc_prng::{Sfc64, rand_core::RngCore};
+    /// # use sfc_prng::{Sfc64, rand_core::Rng};
     /// #
     /// let mut rng = Sfc64::new(0, 0, 0, None);
     /// assert_eq!(rng.next_u64(), 0xDB90_9C81_8901_599D);
@@ -86,7 +88,7 @@ impl Sfc64 {
     /// # Examples
     ///
     /// ```
-    /// # use sfc_prng::{Sfc64, rand_core::RngCore};
+    /// # use sfc_prng::{Sfc64, rand_core::Rng};
     /// #
     /// let mut rng = Sfc64::new_u64(0, None);
     /// assert_eq!(rng.next_u64(), 0x3ACF_A029_E3CC_6041);
@@ -99,13 +101,15 @@ impl Sfc64 {
     }
 }
 
-impl RngCore for Sfc64 {
+impl TryRng for Sfc64 {
+    type Error = Infallible;
+
     #[allow(clippy::cast_possible_truncation)]
-    fn next_u32(&mut self) -> u32 {
-        self.next_u64() as u32
+    fn try_next_u32(&mut self) -> Result<u32, Self::Error> {
+        Ok(self.next_u64() as u32)
     }
 
-    fn next_u64(&mut self) -> u64 {
+    fn try_next_u64(&mut self) -> Result<u64, Self::Error> {
         const ROTATION: u32 = 24;
         const RIGHT_SHIFT: u32 = 11;
         const LEFT_SHIFT: u32 = 3;
@@ -115,11 +119,11 @@ impl RngCore for Sfc64 {
         self.a = self.b ^ (self.b >> RIGHT_SHIFT);
         self.b = self.c.wrapping_add(self.c << LEFT_SHIFT);
         self.c = self.c.rotate_left(ROTATION).wrapping_add(tmp);
-        tmp
+        Ok(tmp)
     }
 
-    fn fill_bytes(&mut self, dst: &mut [u8]) {
-        impls::fill_bytes_via_next(self, dst);
+    fn try_fill_bytes(&mut self, dst: &mut [u8]) -> Result<(), Self::Error> {
+        utils::fill_bytes_via_next_word(dst, || self.try_next_u64())
     }
 }
 
@@ -127,8 +131,7 @@ impl SeedableRng for Sfc64 {
     type Seed = [u8; 24];
 
     fn from_seed(seed: Self::Seed) -> Self {
-        let mut s = [u64::default(); 3];
-        le::read_u64_into(&seed, &mut s);
+        let s: [_; 3] = utils::read_words(&seed);
         Self::new(s[0], s[1], s[2], None)
     }
 }
